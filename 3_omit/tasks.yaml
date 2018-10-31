@@ -1,0 +1,5 @@
+---
+- debug:
+    msg: "{{ myvar }}"
+  vars:
+    myvar: lol

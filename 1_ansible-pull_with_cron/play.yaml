@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  vars: []
+  tasks:
+    - name: deploy cronjob
+      cron:
+        name: "run latest playbook"
+        minute: "*/2"
+        job: "ansible-pull -U ssh://git@git.atix.de:7999/manuelb/froscon.git -i 'localhost,' play.yaml"
+...

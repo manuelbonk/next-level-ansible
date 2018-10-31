@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+    - include_tasks: included.yaml
+      tags:
+       - tag1
+    - import_tasks: imported.yaml
+      tags:
+       - tag1
+...
+
