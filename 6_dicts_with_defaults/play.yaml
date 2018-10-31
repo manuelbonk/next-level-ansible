@@ -6,6 +6,7 @@
     default_server:
       kernel_memory: 64m
       pull: True
+      cpu_count: 2
       state: started
     microservices:
       - image: httpd
@@ -14,11 +15,12 @@
       - image: nginx
         name: nginx loadbalancer
         cpu_count: 4
+        specialvar: 42
   tasks:
     - debug: var=item
       loop: "{{ microservices }}"
     - set_fact:
-        result:  "{{ result | default([]) + [default_server | combine( item , recursive=True)] }}"
+        result:  "{{ result | default([]) + [default_server | combine( item, recursive=True)] }}"
       loop: "{{ microservices }}"
     - debug: var=result
 ...

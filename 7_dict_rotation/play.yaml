@@ -19,7 +19,10 @@
           - entire SCSI disk
   tasks:
     - set_fact:
-        ptable_dict: "{{ ptable_dict | combine( {item.1: ptable_dict[item.1] | default([]) | union([item.0.name] )  }) }}"
+        ptable_dict: "{{ ptable_dict
+                         | combine( {item.1: ptable_dict[item.1]
+                                    | default([])
+                                    | union([item.0.name] )  }) }}"
       with_subelements:
         - "{{ os_ptable_map }}"
         - ptables

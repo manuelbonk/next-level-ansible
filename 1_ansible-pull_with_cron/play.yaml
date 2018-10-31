@@ -8,5 +8,8 @@
       cron:
         name: "run latest playbook"
         minute: "*/2"
-        job: "ansible-pull -U ssh://git@git.atix.de:7999/manuelb/froscon.git -i 'localhost,' play.yaml"
+        job: >
+          ansible-pull
+            -U https://github.com/manuelbonk/ansible-pull.git
+            -i 'localhost,' play.yaml"
 ...

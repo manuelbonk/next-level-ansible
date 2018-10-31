@@ -1,5 +1,3 @@
 ---
 - debug:
-    msg: "{{ myvar }}"
-  vars:
-    myvar: lol
+    msg: "{{ myvar | default(omit) }}"

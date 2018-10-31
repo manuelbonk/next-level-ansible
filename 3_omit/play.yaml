@@ -2,15 +2,9 @@
 - hosts: localhost
   connection: local
   gather_facts: False
-  vars:
-    var1: "Hallo zusammen"
   tasks:
-#    - debug:
-#        msg: "{{ var1 }}"
-#    - debug:
-#        msg: "{{ var2  }}"
     - include_tasks: tasks.yaml
     - include_tasks: tasks.yaml
       vars:
-        myvar: "{{ omit }}"
+        myvar: "hello ORR!"
 ...
