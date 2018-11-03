@@ -3,29 +3,26 @@
   connection: local
   gather_facts: False
   vars:
-    ptable_dict: {}
-    os_ptable_map:
-      - name: Debian9
-        ptables:
-          - Kickstart default
-          - preseed default
-      - name: Centos6
-        ptables:
-          - Kickstart default
-          - entire SCSI disk
-      - name: SLES12
-        ptables:
-          - preseed default
-          - entire SCSI disk
+    customer_order_list: {}
+    product_order_list:
+      - name: product1
+        customers:
+          - customer_a
+          - customer_b
+      - name: product2
+        customers:
+          - customer_b
+          - customer_c
   tasks:
     - set_fact:
-        ptable_dict: "{{ ptable_dict
-                         | combine( {item.1: ptable_dict[item.1]
+        customer_order_list: "{{ customer_order_list
+                         | combine( {item.1:
+                                      customer_order_list[item.1]
                                     | default([])
                                     | union([item.0.name] )  }) }}"
       with_subelements:
-        - "{{ os_ptable_map }}"
-        - ptables
+        - "{{ product_order_list }}"
+        - customers
     - debug:
-        var: ptable_dict
+        var: customer_order_list
 ...
