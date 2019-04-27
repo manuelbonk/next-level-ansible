@@ -1,9 +1,0 @@
----
-- debug: msg='i am an included tag1'
-  tags:
-   - tag1
-
-- debug: msg='i am an included tag2'
-  tags:
-   - tag2
-...
